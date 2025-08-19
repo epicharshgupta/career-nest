@@ -18,7 +18,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser())
 const corsoptions = {
-    origin: ['http://localhost:5173', "https://career-nest-steel.vercel.app"], // Specify the correct origin
+    origin: "https://career-nest-steel.vercel.app", // Specify the correct origin
     credentials: true
 }
 app.use(cors(corsoptions));
