@@ -22,7 +22,7 @@ const corsOptions = {
     credentials: true,
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"], // allow all main methods
 };
-app.use(cors(corsoptions));
+app.use(cors(corsOptions));
 
 
 //api
