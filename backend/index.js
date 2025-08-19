@@ -17,13 +17,14 @@ const app = express();
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser())
-const corsOptions = {
-    origin: "https://career-nest-steel.vercel.app", // Specify the correct origin
-    credentials: true,
-    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"], // allow all main methods
-};
-app.use(cors(corsOptions));
 
+const corsOptions = {
+    origin: "https://career-nest-steel.vercel.app", // frontend domain
+    credentials: true, // agar cookies ya auth headers bhejne hain
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"], // all methods
+};
+
+app.use(cors(corsOptions));
 
 //api
 app.use('/api/v1/user', userRouter)
