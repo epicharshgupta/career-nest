@@ -17,10 +17,11 @@ const app = express();
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser())
-const corsoptions = {
+const corsOptions = {
     origin: "https://career-nest-steel.vercel.app", // Specify the correct origin
-    credentials: true
-}
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"], // allow all main methods
+};
 app.use(cors(corsoptions));
 
 
