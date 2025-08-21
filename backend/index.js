@@ -19,7 +19,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser())
 
 const corsOptions = {
-    origin: "https://career-nest-steel.vercel.app", // frontend domain
+    origin: ["https://career-nest-steel.vercel.app", "http://localhost:5173"], // frontend domain
     credentials: true, // agar cookies ya auth headers bhejne hain
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"], // all methods
 };
@@ -27,9 +27,6 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 //api
-app.use('/', (req, res) => {
-    res.send("Backend is runnig properly!")
-})
 app.use('/api/v1/user', userRouter)
 app.use('/api/v1/company', companyRouter)
 app.use('/api/v1/job', jobRouter)
