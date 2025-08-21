@@ -7,8 +7,10 @@ const jobRouter=express.Router();
 
 
 jobRouter.post('/post',authenticated,postJob)
-jobRouter.get('/get',authenticated,getAllJobs)
-jobRouter.get('/get/:id',authenticated,getJobById);
+// Public endpoints for job listing
+jobRouter.get('/get',getAllJobs)
+jobRouter.get('/get/:id',getJobById);
+// Admin endpoints that require authentication
 jobRouter.get('/getadminjobs',authenticated,getAdminJobs);
 
 export default jobRouter;

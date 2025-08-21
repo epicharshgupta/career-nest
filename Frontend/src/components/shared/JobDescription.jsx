@@ -45,7 +45,7 @@ const JobDescription = () => {
     useEffect(()=>{
         const fetchSingleJob= async () =>{
             try {
-                const res=await axios.get(`${job_API_ENDPOINT}/get/${jobId}`,{withCredentials:true});
+                const res=await axios.get(`${job_API_ENDPOINT}/get/${jobId}`);
                 if(res.data.success){
                     dispatch(setSingleJob(res.data.job));
                     setIsApplied(res.data.job.applications.some(application=>application.applicant===user?._id))

@@ -19,9 +19,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser())
 
 const corsOptions = {
-    origin: ["https://career-nest-steel.vercel.app", "http://localhost:5173"], // frontend domain
+    origin: ["https://career-nest-steel.vercel.app", "http://localhost:5173", "https://career-nest-steel.vercel.app/"], // frontend domain
     credentials: true, // agar cookies ya auth headers bhejne hain
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"], // all methods
+    allowedHeaders: ["Content-Type", "Authorization", "Cookie"],
 };
 
 app.use(cors(corsOptions));
@@ -40,6 +41,14 @@ app.get('/', (req, res) => {
     return res.status(200).json({
         message: "this is job portal app",
         success: true
+    })
+})
+
+app.get('/health', (req, res) => {
+    return res.status(200).json({
+        message: "Server is running",
+        success: true,
+        timestamp: new Date().toISOString()
     })
 })
 

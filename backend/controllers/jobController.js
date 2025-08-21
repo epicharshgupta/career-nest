@@ -30,7 +30,10 @@ export const postJob= async(req,res) =>{
         })
     } catch (error) {
         console.log(error);
-        
+        return res.status(500).json({
+            message:"Error creating job",
+            success:false
+        })
     }
 }
 
@@ -48,19 +51,17 @@ export const getAllJobs = async (req,res) =>{
         const jobs=await Job.find(query).populate({
             path:'company'
         }).sort({createdAt:-1})
-        if(!jobs){
-            return res.status(400).json({
-                message:"Jobs not found",
-                
-                success:false
-            })
-        };
+        
         return res.status(200).json({
             jobs,
             success:true
         })
     } catch (error) {
         console.log(error);
+        return res.status(500).json({
+            message:"Error fetching jobs",
+            success:false
+        })
     }
 }
 
@@ -83,7 +84,10 @@ export const getJobById = async(req,res) =>{
         })
     } catch (error) {
         console.log(error);
-        
+        return res.status(500).json({
+            message:"Error fetching job",
+            success:false
+        })
     }
 }
 
@@ -92,23 +96,19 @@ export const getAdminJobs = async (req,res) =>{
         const adminId=req.id;
         // console.log(adminId)
         const jobs=await Job.find({created_by:adminId}).populate({
-            path:'company',
-            createdAt:-1
-        })
+            path:'company'
+        }).sort({createdAt:-1})
         // console.log(jobs)
-        if(!jobs)
-        {
-            return res.status(400).json({
-                message:"Jobs not found",
-                success:false
-            })
-        }
+        
         return res.status(200).json({
             jobs,
             success:true
         })
     } catch (error) {
         console.log(error);
-        
+        return res.status(500).json({
+            message:"Error fetching admin jobs",
+            success:false
+        })
     }
 }

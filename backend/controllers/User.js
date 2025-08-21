@@ -97,7 +97,7 @@ export const login= async(req,res)=>{
     }
 
     const token=await jwt.sign(tokenData,process.env.SECRET_KEY,{expiresIn:'1d'});
-    user={
+    user={w
         _id:user._id,
         fullname:user.fullname,
         email:user.email,
@@ -105,7 +105,12 @@ export const login= async(req,res)=>{
         role:user.role,
         profile:user.profile
     }
-    return res.status(200).cookie("token",token,{maxAge:1*24*60*60*1000,httpsOnly:true,sameSite:'strict'}).json({
+    return res.status(200).cookie("token",token,{
+        maxAge:1*24*60*60*1000,
+        httpOnly:true,
+        sameSite:'none',
+        secure:true
+    }).json({
         message:`welcome to job portal ${user.fullname}`,
         success:true,user
     })
