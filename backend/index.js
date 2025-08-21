@@ -27,6 +27,9 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 //api
+app.use('/', (req, res) => {
+    res.send("Backend is runnig properly!")
+})
 app.use('/api/v1/user', userRouter)
 app.use('/api/v1/company', companyRouter)
 app.use('/api/v1/job', jobRouter)
